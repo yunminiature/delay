@@ -4,13 +4,24 @@ import {colors} from "../../styles/colors";
 import {useAppSelector} from "../../store";
 import {selectUser} from "../../store/User/selectors";
 import {GenderTypes} from "../../store/User/types";
+import {Menu} from "../Home/Home";
 
-const SideMenu:FC = () => {
+interface SideMenuProps{
+  changeActiveScreen: (screen:Menu) => void
+}
+
+const SideMenu:FC<SideMenuProps> = ({changeActiveScreen}) => {
 
   const {username, gender} = useAppSelector(selectUser)
 
+  const handleClick = (screen:Menu) => {
+    return function (){
+      changeActiveScreen(screen)
+    }
+  }
+
   return(
-    <Menu>
+    <MenuArea>
       <MenuProfile>
         <MenuProfileImage gender={gender}/>
         <MenuProfileName>
@@ -19,26 +30,26 @@ const SideMenu:FC = () => {
       </MenuProfile>
 
       <MenuList>
-        <MenuItem img={gender === GenderTypes.MAN ? `${require("../../ui/Icons/man-laptop.png")}` : `${require("../../ui/Icons/laptop.png")}`}>
+        <MenuItem onClick={handleClick(Menu.MAIN)} img={gender === GenderTypes.MAN ? `${require("../../ui/Emoji/man-laptop.png")}` : `${require("../../ui/Emoji/laptop.png")}`}>
           <MenuItemText>Главная</MenuItemText>
         </MenuItem>
-        <MenuItem img={`${require("../../ui/Icons/fire.png")}`}>
+        <MenuItem onClick={handleClick(Menu.SPRINTS)} img={`${require("../../ui/Emoji/fire.png")}`}>
           <MenuItemText>Текущие спринты</MenuItemText>
         </MenuItem>
-        <MenuItem img={`${require("../../ui/Icons/bookmark.png")}`}>
+        <MenuItem onClick={handleClick(Menu.PROJECTS)} img={`${require("../../ui/Emoji/bookmark.png")}`}>
           <MenuItemText>Мои проекты</MenuItemText>
         </MenuItem>
-        <MenuItem img={`${require("../../ui/Icons/pencil.png")}`}>
+        <MenuItem onClick={handleClick(Menu.NOTES)} img={`${require("../../ui/Emoji/pencil.png")}`}>
           <MenuItemText>Мои заметки</MenuItemText>
         </MenuItem>
       </MenuList>
 
       <MenuInput placeholder="Добавить заметку..."/>
-    </Menu>
+    </MenuArea>
   )
 }
 
-const Menu = styled.div`
+const MenuArea = styled.div`
   width: 340px;
   height: 620px;
   padding: 40px 0;
@@ -55,8 +66,8 @@ const MenuProfileImage = styled.div<{gender: GenderTypes}>`
   height: 100px;
   border-radius: 50px;
   background: ${colors.antique} url(${props => (props.gender === GenderTypes.MAN)
-    ? `${require("../../ui/Icons/man.png")}`
-    : `${require("../../ui/Icons/woman.png")}`}) no-repeat center;
+    ? `${require("../../ui/Emoji/man.png")}`
+    : `${require("../../ui/Emoji/woman.png")}`}) no-repeat center;
   background-size: 65%;
 `
 const MenuProfileName = styled.div`
@@ -79,6 +90,7 @@ const MenuItem = styled.li<{img: string}>`
   padding: 12px 80px 12px 40px;
   background: url(${props => props.img}) no-repeat 20px;
   background-size: 7%;
+  cursor: pointer;
   
   &:hover{
     background-color: ${colors.antique};

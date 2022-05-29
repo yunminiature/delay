@@ -34,7 +34,7 @@ const GreetModal:FC<GreetModalProps> = ({updateUsername}) => {
           Что такое delay?
         </AboutTitle>
         <AboutDescription>
-          Привет! <img src={require("../../ui/Icons/hand.png")} alt="hello" width="25px"/><br/><br/>
+          Привет! <img src={require("../../ui/Emoji/hand.png")} alt="hello" width="25px"/><br/><br/>
           Delay — приложение, которое поможет вам управлять личными задачами или групповыми проектами, используя
           различные техники Agile и Scrum.<br/><br/>
           Создавайте проекты, ставьте задачи, распределяйте их в беклоге в зависимости от приоритета, проводите
@@ -97,7 +97,7 @@ const AboutDescription = styled.p`
 const AboutLink = styled.a`
   color: ${colors.gray};
   padding-right: 32px;
-  background: url(${require("../../ui/Icons/message.png")}) no-repeat right;
+  background: url(${require("../../ui/Emoji/message.png")}) no-repeat right;
   background-size: 17%;
 `
 const AuthModalBackground = styled.div`

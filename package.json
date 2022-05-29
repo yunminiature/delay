@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "@svgr/cli": "^6.2.1",
     "@types/styled-components": "^5.1.25"
   },
   "homepage": "https://yunminiature.github.io/delay"

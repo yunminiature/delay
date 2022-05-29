@@ -180,8 +180,8 @@ const SignUpPersonalizationProfile = styled.div<{gender:GenderTypes}>`
   height: 100px;
   border-radius: 50px;
   background: ${colors.white} url(${props => (props.gender === GenderTypes.MAN)
-  ? `${require("../../ui/Icons/man.png")}`
-  : `${require("../../ui/Icons/woman.png")}`}) no-repeat center;
+  ? `${require("../../ui/Emoji/man.png")}`
+  : `${require("../../ui/Emoji/woman.png")}`}) no-repeat center;
   background-size: 65%;
 `
 const SignUpPersonalizationGender = styled.div`

@@ -13,10 +13,12 @@ import storage from 'redux-persist/lib/storage'
 import {useSelector, TypedUseSelectorHook, useDispatch} from 'react-redux'
 import userReducer from "./User";
 import projectsReducer from "./Projects";
+import tasksReducer from "./Tasks";
 
 const RootReducer = combineReducers({
   user: userReducer,
-  projects: projectsReducer
+  projects: projectsReducer,
+  tasks: tasksReducer
 });
 
 const PersistConfig = {

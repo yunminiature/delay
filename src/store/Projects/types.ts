@@ -6,7 +6,8 @@ export const enum ActionTypes{
 
 export interface Project{
   id: number,
-  title: string
+  title: string,
+  sprints: Array<number>
 }
 
 export interface Projects{

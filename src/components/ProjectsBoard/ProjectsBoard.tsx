@@ -33,12 +33,12 @@ const ProjectsBoard:FC = () => {
       <ProjectsList>
         {
           projects.map(project =>
-            <ProjectCard key={project.id} id={project.id} title={project.title} goBack={handleClick} editCard={editCard} deleteCard={deleteCard} addCard={addCard}/>
+            <ProjectCard key={project.id} {...project} goBack={handleClick} editCard={editCard} deleteCard={deleteCard} addCard={addCard}/>
           )
         }
         {
           isAddingProject
-            ? <ProjectCard key={projects.length} id={projects.length} title={""} goBack={handleClick} editCard={editCard} deleteCard={deleteCard} addCard={addCard}/>
+            ? <ProjectCard key={projects.length} id={projects.length} title={""} sprints={[]} goBack={handleClick} editCard={editCard} deleteCard={deleteCard} addCard={addCard}/>
             : <ProjectButton onClick={handleClick}>
                 <p>+</p>
               </ProjectButton>

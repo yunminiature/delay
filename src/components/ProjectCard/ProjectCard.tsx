@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {colors} from "../../styles/colors";
 import {Back, Delete, Edit} from "../../ui/Icons";
 import {Project} from "../../store/Projects/types";
+import ProjectTasks from "../ProjectTasks";
 
 interface ProjectCardProps extends Project{
   goBack: () => void,
@@ -16,7 +17,7 @@ interface Title{
   title: string
 }
 
-const ProjectCard:FC<ProjectCardProps> = ({id, title, goBack, editCard, deleteCard, addCard}) => {
+const ProjectCard:FC<ProjectCardProps> = ({id, title, sprints, goBack, editCard, deleteCard, addCard}) => {
 
   const [isOpen, setIsOpen] = useState(false)
   const handleClick = () => {
@@ -41,14 +42,16 @@ const ProjectCard:FC<ProjectCardProps> = ({id, title, goBack, editCard, deleteCa
     if (title) {
       editCard({
         id,
-        title: data.title
+        title: data.title,
+        sprints
       })
       setIsEdit(!isEdit)
     }
     else{
       addCard({
         id,
-        title: data.title
+        title: data.title,
+        sprints: []
       })
     }
 
@@ -63,6 +66,10 @@ const ProjectCard:FC<ProjectCardProps> = ({id, title, goBack, editCard, deleteCa
               <ProjectScreenButton type="button" onClick={handleClick}>
                 <Back height="25px"/>
               </ProjectScreenButton>
+              <ProjectScreenTitle>
+                {title}
+              </ProjectScreenTitle>
+              <ProjectTasks projectId={id} sprints={sprints}/>
             </ProjectScreenArea>
            </ProjectScreen>
       }
@@ -127,6 +134,7 @@ const ProjectCardArea = styled.li`
   border-radius: 10px;
   overflow: hidden;
   background-color: ${colors.antique};
+  cursor: pointer;
 `
 const ProjectPreview = styled.div`
   flex-grow: 2;
@@ -141,6 +149,7 @@ const ProjectButton = styled.button`
   padding: 0;
   border: 0;
   background-color: transparent;
+  cursor: pointer;
   
   svg{
     fill: ${colors.light_gray};
@@ -186,6 +195,7 @@ const ProjectInputButton = styled.button`
   padding: 0;
   border: 0;
   background-color: transparent;
+  cursor: pointer;
 
   svg{
     fill: ${colors.light_gray};
@@ -223,6 +233,7 @@ const ProjectScreenButton = styled.button`
   padding: 0;
   border: 0;
   background-color: transparent;
+  cursor: pointer;
 
   svg{
     fill: ${colors.light_gray};
@@ -234,6 +245,12 @@ const ProjectScreenButton = styled.button`
     }
   }
 `
-
+const ProjectScreenTitle = styled.h2`
+  margin: 10px 0 0 10px;
+  font-weight: 700;
+  line-height: 32px;
+  font-size: 28px;
+  color: ${colors.gray};
+`
 
 export default ProjectCard

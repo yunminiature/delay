@@ -6,19 +6,8 @@ const initialState: Projects = {
   projects: [
     {
       id: 0,
-      title: "I say раз-два, say раз-два-три"
-    },
-    {
-      id: 1,
-      title: "Но, ты не знала? Я из SPb"
-    },
-    {
-      id: 2,
-      title: "Эти реперы все похоже мини-мы"
-    },
-    {
-      id: 3,
-      title: "Все поменялось в наши дни, тяжело быть G"
+      title: "Знакомство с delay",
+      sprints: [0]
     }
   ]
 }
